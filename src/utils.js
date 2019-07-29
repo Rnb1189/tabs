@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export function toArray(children) {
   // allow [c,[a,b]]
@@ -33,12 +33,10 @@ export function setTransform(style, v) {
 }
 
 export function isTransform3dSupported(style) {
-  return (
-    ("transform" in style ||
-      "webkitTransform" in style ||
-      "MozTransform" in style) &&
-    window.atob
-  );
+  return ('transform' in style ||
+    'webkitTransform' in style ||
+    'MozTransform' in style) &&
+    window.atob;
 }
 
 export function setTransition(style, v) {
@@ -51,33 +49,28 @@ export function getTransformPropValue(v) {
   return {
     transform: v,
     WebkitTransform: v,
-    MozTransform: v
+    MozTransform: v,
   };
 }
 
 export function isVertical(tabBarPosition) {
-  return tabBarPosition === "left" || tabBarPosition === "right";
+  return tabBarPosition === 'left' || tabBarPosition === 'right';
 }
 
 export function getTransformByIndex(index, tabBarPosition) {
-  const translate = isVertical(tabBarPosition) ? "translateY" : "translateX";
+  const translate = isVertical(tabBarPosition) ? 'translateY' : 'translateX';
   return `${translate}(${-index * 100}%) translateZ(0)`;
 }
 
 export function getMarginStyle(index, tabBarPosition) {
-  const marginDirection = isVertical(tabBarPosition)
-    ? "marginTop"
-    : "marginLeft";
+  const marginDirection = isVertical(tabBarPosition) ? 'marginTop' : 'marginLeft';
   return {
-    [marginDirection]: `${-index * 100}%`
+    [marginDirection]: `${-index * 100}%`,
   };
 }
 
 export function getStyle(el, property) {
-  return +window
-    .getComputedStyle(el)
-    .getPropertyValue(property)
-    .replace("px", "");
+  return +window.getComputedStyle(el).getPropertyValue(property).replace('px', '');
 }
 
 export function setPxStyle(el, value, vertical) {
@@ -87,11 +80,7 @@ export function setPxStyle(el, value, vertical) {
 
 export function getDataAttr(props) {
   return Object.keys(props).reduce((prev, key) => {
-    if (
-      key.substr(0, 5) === "aria-" ||
-      key.substr(0, 5) === "data-" ||
-      key === "role"
-    ) {
+    if (key.substr(0, 5) === 'aria-' || key.substr(0, 5) === 'data-' || key === 'role') {
       prev[key] = props[key];
     }
     return prev;
@@ -99,7 +88,7 @@ export function getDataAttr(props) {
 }
 
 function toNum(style, property) {
-  return +style.getPropertyValue(property).replace("px", "");
+  return +style.getPropertyValue(property).replace('px', '');
 }
 
 function getTypeValue(start, current, end, tabNode, wrapperNode) {
@@ -109,7 +98,7 @@ function getTypeValue(start, current, end, tabNode, wrapperNode) {
   }
 
   const { childNodes } = tabNode.parentNode;
-  Array.prototype.some.call(childNodes, node => {
+  Array.prototype.some.call(childNodes, (node) => {
     const style = window.getComputedStyle(node);
 
     if (node !== tabNode) {
@@ -117,10 +106,8 @@ function getTypeValue(start, current, end, tabNode, wrapperNode) {
       total += node[current];
       total += toNum(style, `margin-${end}`);
 
-      if (style.boxSizing === "content-box") {
-        total +=
-          toNum(style, `border-${start}-width`) +
-          toNum(style, `border-${end}-width`);
+      if (style.boxSizing === 'content-box') {
+        total += toNum(style, `border-${start}-width`) + toNum(style, `border-${end}-width`);
       }
       return false;
     }
@@ -136,9 +123,9 @@ function getTypeValue(start, current, end, tabNode, wrapperNode) {
 }
 
 export function getLeft(tabNode, wrapperNode) {
-  return getTypeValue("left", "offsetWidth", "right", tabNode, wrapperNode);
+  return getTypeValue('left', 'offsetWidth', 'right', tabNode, wrapperNode);
 }
 
 export function getTop(tabNode, wrapperNode) {
-  return getTypeValue("top", "offsetHeight", "bottom", tabNode, wrapperNode);
+  return getTypeValue('top', 'offsetHeight', 'bottom', tabNode, wrapperNode);
 }

@@ -1,9 +1,9 @@
 /* eslint-disable react/prefer-stateless-function */
-import React from "react";
-import ScrollableTabBarNode from "./ScrollableTabBarNode";
-import TabBarRootNode from "./TabBarRootNode";
-import TabBarTabsNode from "./TabBarTabsNode";
-import SaveRef from "./SaveRef";
+import React from 'react';
+import ScrollableTabBarNode from './ScrollableTabBarNode';
+import TabBarRootNode from './TabBarRootNode';
+import TabBarTabsNode from './TabBarTabsNode';
+import SaveRef from './SaveRef';
 
 export default class ScrollableTabBar extends React.Component {
   render() {
@@ -11,11 +11,7 @@ export default class ScrollableTabBar extends React.Component {
       <SaveRef>
         {(saveRef, getRef) => (
           <TabBarRootNode saveRef={saveRef} {...this.props}>
-            <ScrollableTabBarNode
-              saveRef={saveRef}
-              getRef={getRef}
-              {...this.props}
-            >
+            <ScrollableTabBarNode saveRef={saveRef} getRef={getRef} {...this.props}>
               <TabBarTabsNode saveRef={saveRef} {...this.props} />
             </ScrollableTabBarNode>
           </TabBarRootNode>

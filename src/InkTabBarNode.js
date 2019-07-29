@@ -104,6 +104,8 @@ export default class InkTabBarNode extends React.Component {
     const { prefixCls, styles, inkBarAnimated } = this.props;
     const className = `${prefixCls}-ink-bar`;
     const classes = classnames({
+      //NEw:
+      "a-rtl": this.props.isRtl,
       [className]: true,
       [inkBarAnimated
         ? `${className}-animated`

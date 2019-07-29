@@ -16,8 +16,9 @@ const PanelContent = ({ id }) => (
 
 class Demo extends React.Component {
   state = {
-    activeKey: "",
-    start: 0
+    activeKey: "1",
+    start: 0,
+    rtl: false
   };
 
   onChange = activeKey => {
@@ -47,12 +48,18 @@ class Demo extends React.Component {
       activeKey: "-1"
     });
   };
-
+  handleRtl = () => {
+    this.setState(state => {
+      return { ...state, rtl: !state.rtl };
+    });
+  };
   render() {
-    const start = this.state.start;
+    const start = 1;
+    // const start = this.state.start;
+    var isRtl = this.state.rtl;
     return (
       <div style={{ margin: 20 }}>
-        <h1>Simple Tabs</h1>
+        <h1>Simple Tabs1</h1>
         <Tabs
           renderTabBar={() => (
             <ScrollableInkTabBar onTabClick={this.onTabClick} />
@@ -78,6 +85,10 @@ class Demo extends React.Component {
         <button onClick={this.handleNotExistKey} style={{ marginLeft: 10 }}>
           change to a non-existent activeKey
         </button>
+        <button onClick={this.handleRtl} style={{ marginLeft: 10 }}>
+          {isRtl ? "R t l" : "L t r"}
+        </button>
+        <div>{this.state.activeKey}</div>
       </div>
     );
   }

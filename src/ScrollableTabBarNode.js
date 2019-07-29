@@ -289,6 +289,8 @@ export default class ScrollableTabBarNode extends React.Component {
     return (
       <div
         className={classnames({
+          //NEw:
+          "a-rtl": this.props.isRtl,
           [`${prefixCls}-nav-container`]: 1,
           [`${prefixCls}-nav-container-scrolling`]: showNextPrev
         })}

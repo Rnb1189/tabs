@@ -159,6 +159,9 @@ export default class Tabs extends React.Component {
   render() {
     const props = this.props;
     const {
+      //NEw:
+      isRtl,
+
       prefixCls,
       navWrapper,
       tabBarPosition,
@@ -171,12 +174,17 @@ export default class Tabs extends React.Component {
     const cls = classnames({
       [prefixCls]: 1,
       [`${prefixCls}-${tabBarPosition}`]: 1,
-      [className]: !!className
+      [className]: !!className,
+      //NEw:
+      "a-rtl": isRtl
     });
 
     this.tabBar = renderTabBar();
 
     const tabBar = React.cloneElement(this.tabBar, {
+      //NEw:
+      isRtl,
+
       prefixCls,
       navWrapper,
       key: "tabBar",
@@ -188,6 +196,9 @@ export default class Tabs extends React.Component {
     });
 
     const tabContent = React.cloneElement(renderTabContent(), {
+      //NEw:
+      isRtl,
+
       prefixCls,
       tabBarPosition,
       activeKey: this.state.activeKey,
@@ -242,6 +253,9 @@ export default class Tabs extends React.Component {
 }
 
 Tabs.propTypes = {
+  //NEw:
+  isRtl: PropTypes.bool,
+
   destroyInactiveTabPane: PropTypes.bool,
   renderTabBar: PropTypes.func.isRequired,
   renderTabContent: PropTypes.func.isRequired,
@@ -257,6 +271,9 @@ Tabs.propTypes = {
 };
 
 Tabs.defaultProps = {
+  //NEw:
+  isRtl: false,
+
   prefixCls: "rc-tabs",
   destroyInactiveTabPane: false,
   onChange: noop,

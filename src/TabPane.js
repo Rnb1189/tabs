@@ -24,7 +24,9 @@ export default class TabPane extends React.Component {
       [prefixCls]: 1,
       [`${prefixCls}-inactive`]: !active,
       [`${prefixCls}-active`]: active,
-      [className]: className
+      [className]: className,
+      //NEw:
+      "a-rtl": this.props.isRtl
     });
     const isRender = destroyInactiveTabPane ? active : this._isActived;
     const shouldRender = isRender || forceRender;

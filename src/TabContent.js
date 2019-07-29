@@ -47,6 +47,9 @@ export default class TabContent extends React.Component {
     let { style } = props;
     const classes = classnames(
       {
+        //NEw:
+        "a-rtl": this.props.isRtl,
+
         [`${prefixCls}-content`]: true,
         [animated
           ? `${prefixCls}-content-animated`

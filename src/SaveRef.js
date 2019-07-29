@@ -1,18 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class SaveRef extends React.Component {
-  getRef = name => {
+  getRef = (name) => {
     return this[name];
-  };
+  }
 
-  saveRef = name => {
-    return node => {
+  saveRef = (name) => {
+    return (node) => {
       if (node) {
         this[name] = node;
       }
     };
-  };
+  }
 
   render() {
     return this.props.children(this.saveRef, this.getRef);
@@ -20,9 +20,9 @@ export default class SaveRef extends React.Component {
 }
 
 SaveRef.propTypes = {
-  children: PropTypes.func
+  children: PropTypes.func,
 };
 
 SaveRef.defaultProps = {
-  children: () => null
+  children: () => null,
 };

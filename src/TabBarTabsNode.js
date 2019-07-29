@@ -31,6 +31,9 @@ export default class TabBarTabsNode extends React.Component {
           onClick: this.props.onTabClick.bind(this, key)
         };
       }
+      //NEw:
+      if (this.props.isRtl) cls += "a-rtl";
+
       const ref = {};
       if (activeKey === key) {
         ref.ref = saveRef("activeTab");
