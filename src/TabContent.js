@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
 import {
   getTransformByIndex,
   getActiveIndex,
   getTransformPropValue,
-  getMarginStyle,
-} from './utils';
+  getMarginStyle
+} from "./utils";
 
 export default class TabContent extends React.Component {
   getTabPanes() {
@@ -15,17 +15,19 @@ export default class TabContent extends React.Component {
     const children = props.children;
     const newChildren = [];
 
-    React.Children.forEach(children, (child) => {
+    React.Children.forEach(children, child => {
       if (!child) {
         return;
       }
       const key = child.key;
       const active = activeKey === key;
-      newChildren.push(React.cloneElement(child, {
-        active,
-        destroyInactiveTabPane: props.destroyInactiveTabPane,
-        rootPrefixCls: props.prefixCls,
-      }));
+      newChildren.push(
+        React.cloneElement(child, {
+          active,
+          destroyInactiveTabPane: props.destroyInactiveTabPane,
+          rootPrefixCls: props.prefixCls
+        })
+      );
     });
 
     return newChildren;
@@ -34,38 +36,45 @@ export default class TabContent extends React.Component {
   render() {
     const { props } = this;
     const {
-      prefixCls, children, activeKey, className,
-      tabBarPosition, animated, animatedWithMargin,
+      prefixCls,
+      children,
+      activeKey,
+      className,
+      tabBarPosition,
+      animated,
+      animatedWithMargin
     } = props;
     let { style } = props;
-    const classes = classnames({
-      [`${prefixCls}-content`]: true,
-      [animated ?
-        `${prefixCls}-content-animated` :
-        `${prefixCls}-content-no-animated`]: true,
-    }, className);
+    const classes = classnames(
+      {
+        [`${prefixCls}-content`]: true,
+        [animated
+          ? `${prefixCls}-content-animated`
+          : `${prefixCls}-content-no-animated`]: true
+      },
+      className
+    );
     if (animated) {
       const activeIndex = getActiveIndex(children, activeKey);
       if (activeIndex !== -1) {
-        const animatedStyle = animatedWithMargin ?
-                getMarginStyle(activeIndex, tabBarPosition) :
-                getTransformPropValue(getTransformByIndex(activeIndex, tabBarPosition));
+        const animatedStyle = animatedWithMargin
+          ? getMarginStyle(activeIndex, tabBarPosition)
+          : getTransformPropValue(
+              getTransformByIndex(activeIndex, tabBarPosition)
+            );
         style = {
           ...style,
-          ...animatedStyle,
+          ...animatedStyle
         };
       } else {
         style = {
           ...style,
-          display: 'none',
+          display: "none"
         };
       }
     }
     return (
-      <div
-        className={classes}
-        style={style}
-      >
+      <div className={classes} style={style}>
         {this.getTabPanes()}
       </div>
     );
@@ -80,9 +89,9 @@ TabContent.propTypes = {
   activeKey: PropTypes.string,
   style: PropTypes.any,
   tabBarPosition: PropTypes.string,
-  className: PropTypes.string,
+  className: PropTypes.string
 };
 
 TabContent.defaultProps = {
-  animated: true,
+  animated: true
 };

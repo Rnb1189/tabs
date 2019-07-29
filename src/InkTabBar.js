@@ -1,10 +1,10 @@
 /* eslint-disable react/prefer-stateless-function */
-import React from 'react';
-import PropTypes from 'prop-types';
-import InkTabBarNode from './InkTabBarNode';
-import TabBarTabsNode from './TabBarTabsNode';
-import TabBarRootNode from './TabBarRootNode';
-import SaveRef from './SaveRef';
+import React from "react";
+import PropTypes from "prop-types";
+import InkTabBarNode from "./InkTabBarNode";
+import TabBarTabsNode from "./TabBarTabsNode";
+import TabBarRootNode from "./TabBarRootNode";
+import SaveRef from "./SaveRef";
 
 export default class InkTabBar extends React.Component {
   render() {
@@ -12,7 +12,11 @@ export default class InkTabBar extends React.Component {
       <SaveRef>
         {(saveRef, getRef) => (
           <TabBarRootNode saveRef={saveRef} {...this.props}>
-            <TabBarTabsNode onTabClick={this.props.onTabClick} saveRef={saveRef} {...this.props} />
+            <TabBarTabsNode
+              onTabClick={this.props.onTabClick}
+              saveRef={saveRef}
+              {...this.props}
+            />
             <InkTabBarNode saveRef={saveRef} getRef={getRef} {...this.props} />
           </TabBarRootNode>
         )}
@@ -22,9 +26,9 @@ export default class InkTabBar extends React.Component {
 }
 
 InkTabBar.propTypes = {
-  onTabClick: PropTypes.func,
+  onTabClick: PropTypes.func
 };
 
 InkTabBar.defaultProps = {
-  onTabClick: () => {},
+  onTabClick: () => {}
 };

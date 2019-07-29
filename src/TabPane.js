@@ -1,14 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { getDataAttr } from './utils';
-import Sentinel, { SentinelConsumer } from './Sentinel';
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import { getDataAttr } from "./utils";
+import Sentinel, { SentinelConsumer } from "./Sentinel";
 
 export default class TabPane extends React.Component {
   render() {
     const {
-      id, className, destroyInactiveTabPane, active, forceRender,
-      rootPrefixCls, style, children, placeholder,
+      id,
+      className,
+      destroyInactiveTabPane,
+      active,
+      forceRender,
+      rootPrefixCls,
+      style,
+      children,
+      placeholder,
       ...restProps
     } = this.props;
     this._isActived = this._isActived || active;
@@ -17,14 +24,19 @@ export default class TabPane extends React.Component {
       [prefixCls]: 1,
       [`${prefixCls}-inactive`]: !active,
       [`${prefixCls}-active`]: active,
-      [className]: className,
+      [className]: className
     });
     const isRender = destroyInactiveTabPane ? active : this._isActived;
     const shouldRender = isRender || forceRender;
 
     return (
       <SentinelConsumer>
-        {({ sentinelStart, sentinelEnd, setPanelSentinelStart, setPanelSentinelEnd }) => {
+        {({
+          sentinelStart,
+          sentinelEnd,
+          setPanelSentinelStart,
+          setPanelSentinelEnd
+        }) => {
           // Create sentinel
           let panelSentinelStart;
           let panelSentinelEnd;
@@ -47,7 +59,7 @@ export default class TabPane extends React.Component {
             <div
               style={style}
               role="tabpanel"
-              aria-hidden={active ? 'false' : 'true'}
+              aria-hidden={active ? "false" : "true"}
               className={cls}
               id={id}
               {...getDataAttr(restProps)}
@@ -72,9 +84,9 @@ TabPane.propTypes = {
   placeholder: PropTypes.node,
   rootPrefixCls: PropTypes.string,
   children: PropTypes.node,
-  id: PropTypes.string,
+  id: PropTypes.string
 };
 
 TabPane.defaultProps = {
-  placeholder: null,
+  placeholder: null
 };

@@ -1,35 +1,41 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { setTransform, isTransform3dSupported, getLeft, getTop, getActiveIndex } from './utils';
+import React from "react";
+import PropTypes from "prop-types";
+import classnames from "classnames";
+import {
+  setTransform,
+  isTransform3dSupported,
+  getLeft,
+  getTop,
+  getActiveIndex
+} from "./utils";
 
 function componentDidUpdate(component, init) {
   const { styles, panels, activeKey } = component.props;
-  const rootNode = component.props.getRef('root');
-  const wrapNode = component.props.getRef('nav') || rootNode;
-  const inkBarNode = component.props.getRef('inkBar');
-  const activeTab = component.props.getRef('activeTab');
+  const rootNode = component.props.getRef("root");
+  const wrapNode = component.props.getRef("nav") || rootNode;
+  const inkBarNode = component.props.getRef("inkBar");
+  const activeTab = component.props.getRef("activeTab");
   const inkBarNodeStyle = inkBarNode.style;
   const tabBarPosition = component.props.tabBarPosition;
   const activeIndex = getActiveIndex(panels, activeKey);
   if (init) {
     // prevent mount animation
-    inkBarNodeStyle.display = 'none';
+    inkBarNodeStyle.display = "none";
   }
   if (activeTab) {
     const tabNode = activeTab;
     const transformSupported = isTransform3dSupported(inkBarNodeStyle);
 
     // Reset current style
-    setTransform(inkBarNodeStyle, '');
-    inkBarNodeStyle.width = '';
-    inkBarNodeStyle.height = '';
-    inkBarNodeStyle.left = '';
-    inkBarNodeStyle.top = '';
-    inkBarNodeStyle.bottom = '';
-    inkBarNodeStyle.right = '';
+    setTransform(inkBarNodeStyle, "");
+    inkBarNodeStyle.width = "";
+    inkBarNodeStyle.height = "";
+    inkBarNodeStyle.left = "";
+    inkBarNodeStyle.top = "";
+    inkBarNodeStyle.bottom = "";
+    inkBarNodeStyle.right = "";
 
-    if (tabBarPosition === 'top' || tabBarPosition === 'bottom') {
+    if (tabBarPosition === "top" || tabBarPosition === "bottom") {
       let left = getLeft(tabNode, wrapNode);
       let width = tabNode.offsetWidth;
 
@@ -63,14 +69,14 @@ function componentDidUpdate(component, init) {
       }
       if (transformSupported) {
         setTransform(inkBarNodeStyle, `translate3d(0,${top}px,0)`);
-        inkBarNodeStyle.top = '0';
+        inkBarNodeStyle.top = "0";
       } else {
         inkBarNodeStyle.top = `${top}px`;
       }
       inkBarNodeStyle.height = `${height}px`;
     }
   }
-  inkBarNodeStyle.display = activeIndex !== -1 ? 'block' : 'none';
+  inkBarNodeStyle.display = activeIndex !== -1 ? "block" : "none";
 }
 
 export default class InkTabBarNode extends React.Component {
@@ -99,18 +105,16 @@ export default class InkTabBarNode extends React.Component {
     const className = `${prefixCls}-ink-bar`;
     const classes = classnames({
       [className]: true,
-      [
-        inkBarAnimated ?
-          `${className}-animated` :
-          `${className}-no-animated`
-        ]: true,
+      [inkBarAnimated
+        ? `${className}-animated`
+        : `${className}-no-animated`]: true
     });
     return (
       <div
         style={styles.inkBar}
         className={classes}
         key="inkBar"
-        ref={this.props.saveRef('inkBar')}
+        ref={this.props.saveRef("inkBar")}
       />
     );
   }
@@ -120,12 +124,12 @@ InkTabBarNode.propTypes = {
   prefixCls: PropTypes.string,
   styles: PropTypes.object,
   inkBarAnimated: PropTypes.bool,
-  saveRef: PropTypes.func,
+  saveRef: PropTypes.func
 };
 
 InkTabBarNode.defaultProps = {
-  prefixCls: '',
+  prefixCls: "",
   inkBarAnimated: true,
   styles: {},
-  saveRef: () => {},
+  saveRef: () => {}
 };

@@ -2,6 +2,7 @@ export default {
   /**
    * LEFT
    */
+
   LEFT: 37, // also NUM_WEST
   /**
    * UP
@@ -14,5 +15,5 @@ export default {
   /**
    * DOWN
    */
-  DOWN: 40, // also NUM_SOUTH
+  DOWN: 40 // also NUM_SOUTH
 };

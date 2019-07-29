@@ -1,7 +1,7 @@
-import React from 'react';
-import warning from 'warning';
-import PropTypes from 'prop-types';
-import { isVertical } from './utils';
+import React from "react";
+import warning from "warning";
+import PropTypes from "prop-types";
+import { isVertical } from "./utils";
 
 export default class TabBarTabsNode extends React.Component {
   render() {
@@ -12,7 +12,7 @@ export default class TabBarTabsNode extends React.Component {
       tabBarGutter,
       saveRef,
       tabBarPosition,
-      renderTabBarNode,
+      renderTabBarNode
     } = this.props;
     const rst = [];
 
@@ -21,36 +21,40 @@ export default class TabBarTabsNode extends React.Component {
         return;
       }
       const key = child.key;
-      let cls = activeKey === key ? `${prefixCls}-tab-active` : '';
+      let cls = activeKey === key ? `${prefixCls}-tab-active` : "";
       cls += ` ${prefixCls}-tab`;
       let events = {};
       if (child.props.disabled) {
         cls += ` ${prefixCls}-tab-disabled`;
       } else {
         events = {
-          onClick: this.props.onTabClick.bind(this, key),
+          onClick: this.props.onTabClick.bind(this, key)
         };
       }
       const ref = {};
       if (activeKey === key) {
-        ref.ref = saveRef('activeTab');
+        ref.ref = saveRef("activeTab");
       }
 
-      const gutter = tabBarGutter && index === children.length - 1 ? 0 : tabBarGutter;
+      const gutter =
+        tabBarGutter && index === children.length - 1 ? 0 : tabBarGutter;
       const style = {
-        [isVertical(tabBarPosition) ? 'marginBottom' : 'marginRight']: gutter,
+        [isVertical(tabBarPosition) ? "marginBottom" : "marginRight"]: gutter
       };
-      warning('tab' in child.props, 'There must be `tab` property on children of Tabs.');
+      warning(
+        "tab" in child.props,
+        "There must be `tab` property on children of Tabs."
+      );
 
       let node = (
         <div
           role="tab"
-          aria-disabled={child.props.disabled ? 'true' : 'false'}
-          aria-selected={activeKey === key ? 'true' : 'false'}
+          aria-disabled={child.props.disabled ? "true" : "false"}
+          aria-selected={activeKey === key ? "true" : "false"}
           {...events}
           className={cls}
           key={key}
-          style={ style }
+          style={style}
           {...ref}
         >
           {child.props.tab}
@@ -64,11 +68,7 @@ export default class TabBarTabsNode extends React.Component {
       rst.push(node);
     });
 
-    return (
-      <div ref={saveRef('navTabsContainer')}>
-        {rst}
-      </div>
-    );
+    return <div ref={saveRef("navTabsContainer")}>{rst}</div>;
   }
 }
 
@@ -80,7 +80,7 @@ TabBarTabsNode.propTypes = {
   onTabClick: PropTypes.func,
   saveRef: PropTypes.func,
   renderTabBarNode: PropTypes.func,
-  tabBarPosition: PropTypes.string,
+  tabBarPosition: PropTypes.string
 };
 
 TabBarTabsNode.defaultProps = {
@@ -88,5 +88,5 @@ TabBarTabsNode.defaultProps = {
   prefixCls: [],
   tabBarGutter: null,
   onTabClick: () => {},
-  saveRef: () => {},
+  saveRef: () => {}
 };
