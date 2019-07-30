@@ -176,7 +176,8 @@ export default class Tabs extends React.Component {
       [`${prefixCls}-${tabBarPosition}`]: 1,
       [className]: !!className,
       //NEw:
-      "a-rtl": isRtl
+      "a-rtl": isRtl,
+      "a-ltr": !isRtl
     });
 
     this.tabBar = renderTabBar();

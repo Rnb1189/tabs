@@ -5,10 +5,11 @@ import ReactDOM from "react-dom";
 import Tabs, { TabPane } from "rc-tabs";
 import TabContent from "rc-tabs/lib/SwipeableTabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
+import SwipeableInkTabBar from "rc-tabs/lib/SwipeableInkTabBar";
 
 const PanelContent = ({ id }) => (
   <div>
-    {[1, 2, 3, 4].map(item => (
+    {[1, 2, 3, 4, 5, 6].map(item => (
       <p key={item}>{id}</p>
     ))}
   </div>
@@ -16,7 +17,7 @@ const PanelContent = ({ id }) => (
 
 class Demo extends React.Component {
   state = {
-    activeKey: "1",
+    activeKey: "6",
     start: 0,
     rtl: false
   };
@@ -58,10 +59,13 @@ class Demo extends React.Component {
     // const start = this.state.start;
     var isRtl = this.state.rtl;
     return (
-      <div style={{ margin: 20 }}>
+      <div style={{ margin: 20, height: 800 }}>
         <h1>Simple Tabs1</h1>
         <Tabs
+          isRtl={isRtl}
+          tabBarPosition={"right"}
           renderTabBar={() => (
+            // <SwipeableInkTabBar onTabClick={this.onTabClick} />
             <ScrollableInkTabBar onTabClick={this.onTabClick} />
           )}
           renderTabContent={() => <TabContent animatedWithMargin />}
@@ -71,14 +75,20 @@ class Demo extends React.Component {
           <TabPane tab={`tab ${start}`} key="1">
             <PanelContent id={start} />
           </TabPane>
-          <TabPane tab={`tab ${start + 1}`} key="2">
+          <TabPane tab={`امید عبد ${start + 1}`} key="2">
             <PanelContent id={start + 1} />
           </TabPane>
-          <TabPane tab={`tab ${start + 2}`} key="3">
+          <TabPane tab={`tab e ${start + 2}`} key="3">
             <PanelContent id={start + 2} />
           </TabPane>
-          <TabPane tab={`tab ${start + 3}`} key="4" disabled>
+          <TabPane tab={`tab ${start + 3}`} key="4">
             <PanelContent id={start + 3} />
+          </TabPane>
+          <TabPane tab={`tab ${start + 4}`} key="5">
+            <PanelContent id={start + 4} />
+          </TabPane>
+          <TabPane tab={`tab ${start + 5}`} key="6">
+            <PanelContent id={start + 5} />
           </TabPane>
         </Tabs>
         <button onClick={this.tick}>rerender</button>

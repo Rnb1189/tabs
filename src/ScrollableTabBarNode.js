@@ -140,14 +140,34 @@ export default class ScrollableTabBarNode extends React.Component {
           };
         }
       } else if (transformSupported) {
-        navOffset = {
-          value: `translate3d(${target}px,0,0)`
-        };
+        // navOffset = {
+        //   value: `translate3d(${target}px,0,0)`
+        // };
+        //NEw:
+        if (this.props.isRtl)
+          navOffset = {
+            value: `translate3d(${-target}px,0,0)`
+          };
+        else
+          navOffset = {
+            value: `translate3d(${target}px,0,0)`
+          };
       } else {
-        navOffset = {
-          name: "left",
-          value: `${target}px`
-        };
+        // navOffset = {
+        //   name: "left",
+        //   value: `${target}px`
+        // };
+        // NEw:
+        if (this.props.isRtl)
+          navOffset = {
+            name: "right",
+            value: `${target}px`
+          };
+        else
+          navOffset = {
+            name: "left",
+            value: `${target}px`
+          };
       }
       if (transformSupported) {
         setTransform(navStyle, navOffset.value);
@@ -291,6 +311,7 @@ export default class ScrollableTabBarNode extends React.Component {
         className={classnames({
           //NEw:
           "a-rtl": this.props.isRtl,
+          "a-ltr": !this.props.isRtl,
           [`${prefixCls}-nav-container`]: 1,
           [`${prefixCls}-nav-container-scrolling`]: showNextPrev
         })}

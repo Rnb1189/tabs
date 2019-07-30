@@ -18,6 +18,7 @@ export default class TabBarRootNode extends React.Component {
     const cls = classnames(`${prefixCls}-bar`, {
       //NEw:
       "a-rtl": this.props.isRtl,
+      "a-ltr": !this.props.isRtl,
       [className]: !!className
     });
     const topOrBottom = tabBarPosition === "top" || tabBarPosition === "bottom";

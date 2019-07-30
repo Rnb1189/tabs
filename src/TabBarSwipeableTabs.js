@@ -24,6 +24,7 @@ export default class TabBarSwipeableTabs extends React.Component {
       const cls = classnames(`${prefixCls}-tab`, {
         //NEw:
         "a-rtl": this.props.isRtl,
+        "a-ltr": !this.props.isRtl,
         [`${prefixCls}-tab-active`]: activeKey === key,
         [`${prefixCls}-tab-disabled`]: child.props.disabled
       });

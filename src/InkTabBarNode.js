@@ -5,6 +5,7 @@ import {
   setTransform,
   isTransform3dSupported,
   getLeft,
+  getRight,
   getTop,
   getActiveIndex
 } from "./utils";
@@ -36,7 +37,12 @@ function componentDidUpdate(component, init) {
     inkBarNodeStyle.right = "";
 
     if (tabBarPosition === "top" || tabBarPosition === "bottom") {
-      let left = getLeft(tabNode, wrapNode);
+      //let left = getLeft(tabNode, wrapNode);
+      //NEw:
+      let left = component.props.isRtl
+        ? getRight(tabNode, wrapNode)
+        : getLeft(tabNode, wrapNode);
+
       let width = tabNode.offsetWidth;
 
       // If tabNode'width width equal to wrapNode'width when tabBarPosition is top or bottom
@@ -52,11 +58,23 @@ function componentDidUpdate(component, init) {
       }
 
       // use 3d gpu to optimize render
+      // if (transformSupported) {
+      //   setTransform(inkBarNodeStyle, `translate3d(${left}px,0,0)`);
+      // } else {
+      //   inkBarNodeStyle.left = `${left}px`;
+      // }
+
+      //NEw:
+      // use 3d gpu to optimize render
       if (transformSupported) {
-        setTransform(inkBarNodeStyle, `translate3d(${left}px,0,0)`);
+        if (component.props.isRtl)
+          setTransform(inkBarNodeStyle, `translate3d(${-left}px,0,0)`);
+        else setTransform(inkBarNodeStyle, `translate3d(${left}px,0,0)`);
       } else {
-        inkBarNodeStyle.left = `${left}px`;
+        if (component.props.isRtl) inkBarNodeStyle.right = `${left}px`;
+        else inkBarNodeStyle.left = `${left}px`;
       }
+
       inkBarNodeStyle.width = `${width}px`;
     } else {
       let top = getTop(tabNode, wrapNode, true);
@@ -106,6 +124,7 @@ export default class InkTabBarNode extends React.Component {
     const classes = classnames({
       //NEw:
       "a-rtl": this.props.isRtl,
+      "a-ltr": !this.props.isRtl,
       [className]: true,
       [inkBarAnimated
         ? `${className}-animated`

@@ -2,6 +2,7 @@ import React from "react";
 import warning from "warning";
 import PropTypes from "prop-types";
 import { isVertical } from "./utils";
+import classnames from "classnames";
 
 export default class TabBarTabsNode extends React.Component {
   render() {
@@ -32,7 +33,13 @@ export default class TabBarTabsNode extends React.Component {
         };
       }
       //NEw:
-      if (this.props.isRtl) cls += "a-rtl";
+      cls = classnames(
+        {
+          "a-rtl": this.props.isRtl,
+          "a-ltr": !this.props.isRtl
+        },
+        cls
+      );
 
       const ref = {};
       if (activeKey === key) {

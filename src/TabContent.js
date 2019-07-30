@@ -47,8 +47,9 @@ export default class TabContent extends React.Component {
     let { style } = props;
     const classes = classnames(
       {
-        //NEw:
+        // //NEw:
         "a-rtl": this.props.isRtl,
+        "a-ltr": !this.props.isRtl,
 
         [`${prefixCls}-content`]: true,
         [animated
@@ -61,7 +62,9 @@ export default class TabContent extends React.Component {
       const activeIndex = getActiveIndex(children, activeKey);
       if (activeIndex !== -1) {
         const animatedStyle = animatedWithMargin
-          ? getMarginStyle(activeIndex, tabBarPosition)
+          ? //? getMarginStyle(activeIndex, tabBarPosition)
+            //NEw:
+            getMarginStyle(activeIndex, tabBarPosition, this.props.isRtl)
           : getTransformPropValue(
               getTransformByIndex(activeIndex, tabBarPosition)
             );
