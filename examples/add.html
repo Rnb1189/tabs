@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>add.js - example - rc-tabs@9.6.4</title>
+  <title>add.js - example - rnb-rc-tabs@9.6.6</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -257,20 +257,20 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
     document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
   }
   </script>
-  <link rel="stylesheet" href="../common.css" />
+  
 </head>
 
 <body>
   <div class="container">
     <div class="header">
-      <h1>rc-tabs@9.6.4</h1>
+      <h1>rnb-rc-tabs@9.6.6</h1>
 
       <p>tabs ui component for react</p>
     </div>
     <div class="example" id="__react-content"></div>
 
     <div class="highlight"><pre><code language="js"><span class="hljs-comment">/* eslint react/no-multi-comp:0, no-console:0, no-alert:0, no-undef: 0 */</span>
-<span class="hljs-keyword">import</span> <span class="hljs-string">'rc-tabs/assets/index.css'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'rc-tabs/assets/index.less'</span>;
 <span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
 <span class="hljs-keyword">import</span> Tabs, { TabPane } <span class="hljs-keyword">from</span> <span class="hljs-string">'rc-tabs'</span>;
@@ -297,9 +297,9 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   construct() {
     <span class="hljs-keyword">const</span> disabled = <span class="hljs-literal">true</span>;
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.state.tabs.map((t) =&gt; {
-      <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">TabPane</span>
+      <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">TabPane</span>
         <span class="hljs-attribute">tab</span>=<span class="hljs-value">{&lt;span</span>&gt;</span>{t.title}
-          <span class="hljs-tag">&lt;<span class="hljs-title">a</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">a</span>
             <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span>
               <span class="hljs-attribute">position:</span> '<span class="hljs-attribute">absolute</span>',
               <span class="hljs-attribute">cursor:</span> '<span class="hljs-attribute">pointer</span>',
@@ -319,7 +319,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
         <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">TabPane</span>&gt;</span>)</span>;
     }).concat([
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">TabPane</span>
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">TabPane</span>
         <span class="hljs-attribute">tab</span>=<span class="hljs-value">{&lt;a</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">color:</span> '<span class="hljs-attribute">black</span>', <span class="hljs-attribute">cursor:</span> '<span class="hljs-attribute">pointer</span>' }} <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.add}</span>&gt;</span> + 添加<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>}
         disabled={disabled}
         key="__add"
@@ -376,9 +376,9 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
       <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">margin:</span> <span class="hljs-attribute">20</span> }}&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>Addable Tabs<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{tabStyle}</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">Tabs</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">Tabs</span>
             <span class="hljs-attribute">renderTabBar</span>=<span class="hljs-value">{()</span> =&gt;</span> (
-              <span class="hljs-tag">&lt;<span class="hljs-title">ScrollableInkTabBar</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">ScrollableInkTabBar</span>
                 <span class="hljs-attribute">extraContent</span>=<span class="hljs-value">{</span>
                   &lt;<span class="hljs-attribute">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.add}</span>&gt;</span>+添加<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
                 }
