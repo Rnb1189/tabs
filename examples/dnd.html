@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>dnd.js - example - rnb-rc-tabs@9.6.6</title>
+  <title>dnd.js - example - rnb-rc-tabs@9.6.7</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -257,46 +257,36 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
     document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
   }
   </script>
-  
+  <link rel="stylesheet" href="../common.css" />
 </head>
 
 <body>
   <div class="container">
     <div class="header">
-      <h1>rnb-rc-tabs@9.6.6</h1>
+      <h1>rnb-rc-tabs@9.6.7</h1>
 
       <p>tabs ui component for react</p>
     </div>
     <div class="example" id="__react-content"></div>
 
     <div class="highlight"><pre><code language="undefined">/* eslint react/no-multi-comp:0, no-console:0, react/prop-types:0 */
-import 'rc-tabs/assets/index.less';
-import React from 'react';
-import HTML5Backend from 'react-dnd-html5-backend'
-import ReactDOM from 'react-dom';
-import Tabs, { TabPane } from 'rc-tabs';
-import update from 'immutability-helper';
-import TabContent from 'rc-tabs/lib/SwipeableTabContent';
-import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar';
-import {
-	DragSource,
-  DropTarget,
-  DragDropContextProvider,
-} from 'react-dnd';
+import "rnb-rc-tabs/assets/index.css";
+import React from "react";
+import HTML5Backend from "react-dnd-html5-backend";
+import ReactDOM from "react-dom";
+import Tabs, { TabPane } from "rnb-rc-tabs";
+import update from "immutability-helper";
+import TabContent from "rnb-rc-tabs/lib/SwipeableTabContent";
+import ScrollableInkTabBar from "rnb-rc-tabs/lib/ScrollableInkTabBar";
+import { DragSource, DropTarget, DragDropContextProvider } from "react-dnd";
 
 // Drag &amp; Drop node
 class TabNode extends React.Component {
   render() {
-		const {
-			connectDragSource,
-      connectDropTarget,
-      children,
-		} = this.props
+    const { connectDragSource, connectDropTarget, children } = this.props;
 
-		return connectDragSource(
-			connectDropTarget(children),
-    );
-	}
+    return connectDragSource(connectDropTarget(children));
+  }
 }
 
 const cardTarget = {
@@ -310,57 +300,49 @@ const cardTarget = {
 
     props.moveTabNode(dragKey, hoverKey);
     monitor.getItem().index = hoverKey;
-  },
+  }
 };
 
 const cardSource = {
-	beginDrag(props) {
-		return {
-			id: props.id,
-			index: props.index,
-		}
-	},
+  beginDrag(props) {
+    return {
+      id: props.id,
+      index: props.index
+    };
+  }
 };
 
-const WrapTabNode = DropTarget(
-	'DND_NODE',
-	cardTarget,
-	(connect) =&gt; ({
-		connectDropTarget: connect.dropTarget(),
-	}),
-)(
-	DragSource(
-		'DND_NODE',
-		cardSource,
-		(connect, monitor) =&gt; ({
-			connectDragSource: connect.dragSource(),
-			isDragging: monitor.isDragging(),
-		}),
-	)(TabNode),
+const WrapTabNode = DropTarget("DND_NODE", cardTarget, connect =&gt; ({
+  connectDropTarget: connect.dropTarget()
+}))(
+  DragSource("DND_NODE", cardSource, (connect, monitor) =&gt; ({
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }))(TabNode)
 );
 
 // Demo
 class Demo extends React.Component {
   state = {
-    activeKey: '1',
-    tabs: ['1', '2', '3'],
+    activeKey: "1",
+    tabs: ["1", "2", "3"]
   };
 
-  onChange = (activeKey) =&gt; {
+  onChange = activeKey =&gt; {
     console.log(`onChange ${activeKey}`);
     this.setState({
-      activeKey,
+      activeKey
     });
-  }
+  };
 
-  onTabClick = (key) =&gt; {
+  onTabClick = key =&gt; {
     console.log(`onTabClick ${key}`);
     if (key === this.state.activeKey) {
       this.setState({
-        activeKey: '',
+        activeKey: ""
       });
     }
-  }
+  };
 
   moveTabNode = (dragKey, hoverKey) =&gt; {
     const { tabs } = this.state;
@@ -368,17 +350,23 @@ class Demo extends React.Component {
     const hoverIndex = tabs.indexOf(hoverKey);
     const dragTab = this.state.tabs[dragIndex];
     this.setState(
-			update(this.state, {
-				tabs: {
-					$splice: [[dragIndex, 1], [hoverIndex, 0, dragTab]],
-				},
-			}),
-		);
+      update(this.state, {
+        tabs: {
+          $splice: [[dragIndex, 1], [hoverIndex, 0, dragTab]]
+        }
+      })
+    );
   };
 
-  renderTabBarNode = (node) =&gt; {
+  renderTabBarNode = node =&gt; {
     return (
-      &lt;WrapTabNode key={node.key} index={node.key} moveTabNode={this.moveTabNode}&gt;{node}&lt;/WrapTabNode&gt;
+      &lt;WrapTabNode
+        key={node.key}
+        index={node.key}
+        moveTabNode={this.moveTabNode}
+      &gt;
+        {node}
+      &lt;/WrapTabNode&gt;
     );
   };
 
@@ -409,7 +397,7 @@ class Demo extends React.Component {
   }
 }
 
-ReactDOM.render(&lt;Demo /&gt;, document.getElementById('__react-content'));
+ReactDOM.render(&lt;Demo /&gt;, document.getElementById("__react-content"));
 </code></pre></div>
   </div>
   <a href="http://github.com/react-component/tabs">

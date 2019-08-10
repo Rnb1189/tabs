@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>add.js - example - rnb-rc-tabs@9.6.6</title>
+  <title>add.js - example - rnb-rc-tabs@9.6.7</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -257,134 +257,146 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
     document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
   }
   </script>
-  
+  <link rel="stylesheet" href="../common.css" />
 </head>
 
 <body>
   <div class="container">
     <div class="header">
-      <h1>rnb-rc-tabs@9.6.6</h1>
+      <h1>rnb-rc-tabs@9.6.7</h1>
 
       <p>tabs ui component for react</p>
     </div>
     <div class="example" id="__react-content"></div>
 
     <div class="highlight"><pre><code language="js"><span class="hljs-comment">/* eslint react/no-multi-comp:0, no-console:0, no-alert:0, no-undef: 0 */</span>
-<span class="hljs-keyword">import</span> <span class="hljs-string">'rc-tabs/assets/index.less'</span>;
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
-<span class="hljs-keyword">import</span> Tabs, { TabPane } <span class="hljs-keyword">from</span> <span class="hljs-string">'rc-tabs'</span>;
-<span class="hljs-keyword">import</span> TabContent <span class="hljs-keyword">from</span> <span class="hljs-string">'rc-tabs/lib/TabContent'</span>;
-<span class="hljs-keyword">import</span> ScrollableInkTabBar <span class="hljs-keyword">from</span> <span class="hljs-string">'rc-tabs/lib/ScrollableInkTabBar'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"rnb-rc-tabs/assets/index.css"</span>;
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">"react-dom"</span>;
+<span class="hljs-keyword">import</span> Tabs, { TabPane } <span class="hljs-keyword">from</span> <span class="hljs-string">"rnb-rc-tabs"</span>;
+<span class="hljs-keyword">import</span> TabContent <span class="hljs-keyword">from</span> <span class="hljs-string">"rnb-rc-tabs/lib/TabContent"</span>;
+<span class="hljs-keyword">import</span> ScrollableInkTabBar <span class="hljs-keyword">from</span> <span class="hljs-string">"rnb-rc-tabs/lib/ScrollableInkTabBar"</span>;
 
 <span class="hljs-keyword">let</span> index = <span class="hljs-number">1</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
   state = {
-    tabs: [{
-      title: <span class="hljs-string">'初始'</span>,
-      content: <span class="hljs-string">'初始内容'</span>,
-    }],
-    activeKey: <span class="hljs-string">'初始'</span>,
+    tabs: [
+      {
+        title: <span class="hljs-string">"初始"</span>,
+        content: <span class="hljs-string">"初始内容"</span>
+      }
+    ],
+    activeKey: <span class="hljs-string">"初始"</span>
   };
 
-  onTabChange = (activeKey) =&gt; {
+  onTabChange = activeKey =&gt; {
     <span class="hljs-keyword">this</span>.setState({
-      activeKey,
+      activeKey
     });
-  }
+  };
 
   construct() {
     <span class="hljs-keyword">const</span> disabled = <span class="hljs-literal">true</span>;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.state.tabs.map((t) =&gt; {
-      <span class="hljs-keyword">return</span> (<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">TabPane</span>
-        <span class="hljs-attribute">tab</span>=<span class="hljs-value">{&lt;span</span>&gt;</span>{t.title}
-          <span class="hljs-tag">&lt;<span class="hljs-title">a</span>
-            <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span>
-              <span class="hljs-attribute">position:</span> '<span class="hljs-attribute">absolute</span>',
-              <span class="hljs-attribute">cursor:</span> '<span class="hljs-attribute">pointer</span>',
-              <span class="hljs-attribute">color:</span> '<span class="hljs-attribute">red</span>',
-              <span class="hljs-attribute">right:</span> <span class="hljs-attribute">5</span>,
-              <span class="hljs-attribute">top:</span> <span class="hljs-attribute">0</span>,
-            }}
-            <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{(e)</span> =&gt;</span> {
-              this.remove(t.title, e)
-            }}
-          &gt;x<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>}
-        key={t.title}
-      &gt;
-        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">padding:</span> <span class="hljs-attribute">100</span> }}&gt;</span>
-          {t.content}
-        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-title">TabPane</span>&gt;</span>)</span>;
-    }).concat([
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">TabPane</span>
-        <span class="hljs-attribute">tab</span>=<span class="hljs-value">{&lt;a</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">color:</span> '<span class="hljs-attribute">black</span>', <span class="hljs-attribute">cursor:</span> '<span class="hljs-attribute">pointer</span>' }} <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.add}</span>&gt;</span> + 添加<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>}
-        disabled={disabled}
-        key="__add"
-      /&gt;,
-    ]);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.state.tabs
+      .map(t =&gt; {
+        <span class="hljs-keyword">return</span> (
+          <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">TabPane</span>
+            <span class="hljs-attribute">tab</span>=<span class="hljs-value">{</span>
+              &lt;<span class="hljs-attribute">span</span>&gt;</span>
+                {t.title}
+                <span class="hljs-tag">&lt;<span class="hljs-title">a</span>
+                  <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span>
+                    <span class="hljs-attribute">position:</span> "<span class="hljs-attribute">absolute</span>",
+                    <span class="hljs-attribute">cursor:</span> "<span class="hljs-attribute">pointer</span>",
+                    <span class="hljs-attribute">color:</span> "<span class="hljs-attribute">red</span>",
+                    <span class="hljs-attribute">right:</span> <span class="hljs-attribute">5</span>,
+                    <span class="hljs-attribute">top:</span> <span class="hljs-attribute">0</span>
+                  }}
+                  <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{e</span> =&gt;</span> {
+                    this.remove(t.title, e);
+                  }}
+                &gt;
+                  x
+                <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+              <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+            }
+            key={t.title}
+          &gt;
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">padding:</span> <span class="hljs-attribute">100</span> }}&gt;</span>{t.content}<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">TabPane</span>&gt;</span>
+        )</span>;
+      })
+      .concat([
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">TabPane</span>
+          <span class="hljs-attribute">tab</span>=<span class="hljs-value">{</span>
+            &lt;<span class="hljs-attribute">a</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">color:</span> "<span class="hljs-attribute">black</span>", <span class="hljs-attribute">cursor:</span> "<span class="hljs-attribute">pointer</span>" }} <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.add}</span>&gt;</span>
+              {" "}
+              + 添加
+            <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+          }
+          disabled={disabled}
+          key="__add"
+        /&gt;
+      ]</span>);
   }
 
   remove = (title, e) =&gt; {
     e.stopPropagation();
-    if (this.state.tabs.length === 1) {
-      alert('只剩一个，不能删');
-      return;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.state.tabs.length === <span class="hljs-number">1</span>) {
+      alert(<span class="hljs-string">"只剩一个，不能删"</span>);
+      <span class="hljs-keyword">return</span>;
     }
-    let foundIndex = 0;
-    const after = this.state.tabs.filter((t, i) =&gt; {
-      if (t.title !== title) {
-        return true;
+    <span class="hljs-keyword">let</span> foundIndex = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> after = <span class="hljs-keyword">this</span>.state.tabs.filter((t, i) =&gt; {
+      <span class="hljs-keyword">if</span> (t.title !== title) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
       }
       foundIndex = i;
-      return false;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
     });
-    let activeKey = this.state.activeKey;
-    if (activeKey === title) {
-      if (foundIndex) {
+    <span class="hljs-keyword">let</span> activeKey = <span class="hljs-keyword">this</span>.state.activeKey;
+    <span class="hljs-keyword">if</span> (activeKey === title) {
+      <span class="hljs-keyword">if</span> (foundIndex) {
         foundIndex--;
       }
       activeKey = after[foundIndex].title;
     }
-    this.setState({
+    <span class="hljs-keyword">this</span>.setState({
       tabs: after,
-      activeKey,
+      activeKey
     });
-  }
+  };
 
-  add = (e) =&gt; {
+  add = e =&gt; {
     e.stopPropagation();
     index++;
-    const newTab = {
-      title: `名称: ${index}`,
-      content: `内容: ${index}`,
+    <span class="hljs-keyword">const</span> newTab = {
+      title: <span class="hljs-string">`名称: <span class="hljs-subst">${index}</span>`</span>,
+      content: <span class="hljs-string">`内容: <span class="hljs-subst">${index}</span>`</span>
     };
-    this.setState({
-      tabs: this.state.tabs.concat(newTab),
-      activeKey: `名称: ${index}`,
+    <span class="hljs-keyword">this</span>.setState({
+      tabs: <span class="hljs-keyword">this</span>.state.tabs.concat(newTab),
+      activeKey: <span class="hljs-string">`名称: <span class="hljs-subst">${index}</span>`</span>
     });
-  }
+  };
 
   render() {
-    const tabStyle = {
-      width: 500,
+    <span class="hljs-keyword">const</span> tabStyle = {
+      width: <span class="hljs-number">500</span>
     };
 
-    return (
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">margin:</span> <span class="hljs-attribute">20</span> }}&gt;</span>
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">margin:</span> <span class="hljs-attribute">20</span> }}&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>Addable Tabs<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{tabStyle}</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-title">Tabs</span>
             <span class="hljs-attribute">renderTabBar</span>=<span class="hljs-value">{()</span> =&gt;</span> (
               <span class="hljs-tag">&lt;<span class="hljs-title">ScrollableInkTabBar</span>
-                <span class="hljs-attribute">extraContent</span>=<span class="hljs-value">{</span>
-                  &lt;<span class="hljs-attribute">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.add}</span>&gt;</span>+添加<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-                }
+                <span class="hljs-attribute">extraContent</span>=<span class="hljs-value">{&lt;button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.add}</span>&gt;</span>+添加<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>}
               /&gt;
             )</span>}
-            renderTabContent={() =&gt; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">TabContent</span>/&gt;</span>}
+            renderTabContent={() =&gt; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">TabContent</span> /&gt;</span>}
             activeKey={this.state.activeKey}
             onChange={this.onTabChange}
           &gt;
@@ -396,7 +408,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   }
 }
 
-ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Demo</span> /&gt;</span>, document.getElementById('__react-content'));
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Demo</span> /&gt;</span>, document.getElementById("__react-content"));
 </span></code></pre></div>
   </div>
   <a href="http://github.com/react-component/tabs">
