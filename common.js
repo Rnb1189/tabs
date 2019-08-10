@@ -880,7 +880,8 @@ var TabBarRootNode = function (_React$Component) {
         "a-ltr": !this.props.isRtl
       }, className, !!className));
       var topOrBottom = tabBarPosition === "top" || tabBarPosition === "bottom";
-      var tabBarExtraContentStyle = topOrBottom ? { float: "right" } : {};
+      // const tabBarExtraContentStyle = topOrBottom ? { float: "right" } : {};
+      var tabBarExtraContentStyle = topOrBottom ? { float: this.props.isRtl ? "left" : "right" } : {};
       var extraContentStyle = extraContent && extraContent.props ? extraContent.props.style : {};
       var newChildren = children;
       if (extraContent) {
