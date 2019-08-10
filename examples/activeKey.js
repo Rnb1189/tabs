@@ -1,11 +1,11 @@
 /* eslint react/no-multi-comp:0, no-console:0, react/prop-types:0 */
-import "rc-tabs/assets/index.less";
+import "rnb-rc-tabs/assets/index.less";
 import React from "react";
 import ReactDOM from "react-dom";
-import Tabs, { TabPane } from "rc-tabs";
-import TabContent from "rc-tabs/lib/SwipeableTabContent";
-import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
-import SwipeableInkTabBar from "rc-tabs/lib/SwipeableInkTabBar";
+import Tabs, { TabPane } from "rnb-rc-tabs";
+import TabContent from "rnb-rc-tabs/lib/SwipeableTabContent";
+import ScrollableInkTabBar from "rnb-rc-tabs/lib/ScrollableInkTabBar";
+import SwipeableInkTabBar from "rnb-rc-tabs/lib/SwipeableInkTabBar";
 
 const PanelContent = ({ id }) => (
   <div>
